@@ -49,12 +49,6 @@ img{
     width: 100px;
     height: 100px;
 }
-
-.lista_de_comida {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); 
-   
-}
   
 
 footer{

@@ -21,32 +21,8 @@ const tragos = [
 
 console.log(tragos);
 
-/*Objetos de Comida*/
-
-const comida = [
-    {
-        "comida": "Garrapato Azado",
-        "precio": 3000,
-    },
-    {
-        "comida": "Lobo Espacial Azado",
-        "precio": 5000,
-    },
-    {
-        "comida": "Empanada",
-        "precio": 1000,
-    },
-    {
-        "comida": "Paztel de Dakka",
-        "precio": 6000,
-    },
-]
-
-console.log(comida);
-
 /*almacenamiento de los pedidos*/
-let tragoElegido;
-let platoElegido;
+const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 
 /*DESDE AQUÍ ES DONDE EMPIEZA A EJECUTARSE EL CODIGO*/
@@ -67,11 +43,52 @@ const test_de_edad = () => {
         }
 }
 
+/*Llamando a los productos*/ 
+
+const mostrarTragos = () => {
+    const cajaDeTragos = document.getElementById("tragos");
+    tragos.forEach(trago => {
+        const tragoElement = document.createElement("div");
+        tragoElement.innerHTML = `
+            <p>${trago.trago} - Precio: $${trago.Precio}</p>
+            <button onclick="agregarAlCarrito('${trago.trago}', ${trago.Precio})">Agregar al carrito</button>
+        `;
+        cajaDeTragos.appendChild(tragoElement);
+    });
+}
+
+const agregarAlCarrito = (trago, precio) => {
+    const item = { trago, precio };
+    carrito.push(item);
+    mostrarCarrito();
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+const mostrarCarrito = () => {
+    const carro = document.getElementById("carro");
+    carro.innerHTML = "";
+    carrito.forEach(item => {
+        const itemElement = document.createElement("div");
+        itemElement.innerText = `${item.trago} - Precio: $${item.precio}`;
+        carro.appendChild(itemElement);
+    });
+}
+
+const finalizarCompra = () => {
+    let total = 0;
+    carrito.forEach(item => {
+        total += item.precio;
+    });
+    alert(`Compra finalizada Waaaghhh!!! ¡AHORA A PAGAR!: $${total}`);
+}
+
+
 
 
 //orden de las funciones 
 
 /*1*/ test_de_edad ();
+/*2*/ mostrarTragos();
 
 
 
