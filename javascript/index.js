@@ -1,4 +1,4 @@
-/*Objetos de tragos*/
+// Lista de tragos en objetos
 
 const tragos = [
     {
@@ -17,33 +17,27 @@ const tragos = [
         "trago": "Fernet Garrapato",
         "Precio": 1000,
     },
-]
+];
 
-console.log(tragos);
+// Almacenamiento local
 
-/*almacenamiento de los pedidos*/
 const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
+// Formulario para preguntar la edad
 
-/*DESDE AQUÍ ES DONDE EMPIEZA A EJECUTARSE EL CODIGO*/
+const formularioEdad = document.getElementById("formulario-edad");
+formularioEdad.addEventListener("submit", function(event) {
+    event.preventDefault();
+    const edad = parseInt(document.getElementById("edad").value);
+    if (edad >= 18) {
+        document.getElementById("mensaje-bienvenida").innerText = "¡Bienvenido zeaz!";
+    } else {
+        document.getElementById("mensaje-bienvenida").innerText = "¡No puedez pazar zhiko!";
+        window.close();
+    }
+});
 
-/*confirmar edad*/
-alert("Bienvenido al Bar Orko. Te debo hacer unas preguntas");
-
-const test_de_edad = () => {
-
-    let prueba_de_edad = parseInt(prompt("¿Kual ez tu edad?"));
-  
-    if (prueba_de_edad >= 18) {
-        alert("¡Bienvenido zeaz!");
-        } 
-    else {
-            alert("¡No puedez pazar zhiko!");
-            window.close();
-        }
-}
-
-/*Llamando a los productos*/ 
+// Tragos a elegir 
 
 const mostrarTragos = () => {
     const cajaDeTragos = document.getElementById("tragos");
@@ -56,6 +50,8 @@ const mostrarTragos = () => {
         cajaDeTragos.appendChild(tragoElement);
     });
 }
+
+// Carrito 
 
 const agregarAlCarrito = (trago, precio) => {
     const item = { trago, precio };
@@ -74,22 +70,17 @@ const mostrarCarrito = () => {
     });
 }
 
+// Finalizar la compra
+
 const finalizarCompra = () => {
     let total = 0;
     carrito.forEach(item => {
         total += item.precio;
     });
-    alert(`Compra finalizada Waaaghhh!!! ¡AHORA A PAGAR!: $${total}`);
+    document.getElementById("total a pagar").innerText = (`Compra finalizada Waaaghhh!!! ¡AHORA A PAGAR!: $${total}`);
 }
 
 
+//llamado de funciones 
 
-
-//orden de las funciones 
-
-/*1*/ test_de_edad ();
-/*2*/ mostrarTragos();
-
-
-
-
+mostrarTragos();

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="javascript/index.js" defer></script>
+
     <link rel="stylesheet" href="css/style.css">
 
     <title>Bar Orko</title>
@@ -25,17 +26,24 @@
 
         <img class="skull" src="imagenes/img_1.png" alt="logo de orko">
 
-        <p>
-            ¡¡¡Bienvenido al bar Orko, lleno de un buen alkohol para iniziar un whaaaaghhh!!!
-        </p>
-        
         <br>
 
         <h3 class="titulos">Tragos</h3>
         <div id="tragos"></div>
         <hr>
         <div id="carro"></div>
+
+        <br>
+        <form id="formulario-edad">
+            <label for="edad">Ingresa tu edad:</label>
+            <input type="number" id="edad" name="edad" required>
+            <button type="submit">Enviar</button>
+        </form>
+        <br>
         <button onclick="finalizarCompra()">Finalizar compra</button>
+        
+        <p id="mensaje-bienvenida"></p>
+        <p id="total a pagar"></p>
 
         <h3 class="titulos">¡Zomoz Orkos!</h3>
         
